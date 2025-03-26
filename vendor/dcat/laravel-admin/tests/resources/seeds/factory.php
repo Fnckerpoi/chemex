@@ -11,7 +11,7 @@ $factory->define(\Tests\Models\User::class, function (Faker $faker) {
         'email'    => $faker->email,
         'mobile'   => $faker->phoneNumber,
         'avatar'   => $faker->imageUrl(),
-        'password' => bcrypt('123456'),
+        'password' => md5('123456'),
     ];
 });
 

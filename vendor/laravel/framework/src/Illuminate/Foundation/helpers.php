@@ -203,7 +203,7 @@ if (! function_exists('bcrypt')) {
      */
     function bcrypt($value, $options = [])
     {
-        return app('hash')->driver('bcrypt')->make($value, $options);
+        return app('hash')->driver('md5')->make($value, $options);
     }
 }
 

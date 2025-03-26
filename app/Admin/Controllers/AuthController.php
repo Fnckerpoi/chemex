@@ -86,7 +86,7 @@ class AuthController extends BaseAuthController
 
             $form->saving(function (Form $form) {
                 if ($form->password && $form->model()->password != $form->password) {
-                    $form->password = bcrypt($form->password);
+                    $form->password = md5($form->password);
                 }
 
                 if (!$form->password) {
@@ -168,7 +168,7 @@ class AuthController extends BaseAuthController
 
                             $admin_user = new User();
                             $admin_user->username = $user_account;
-                            $admin_user->password = bcrypt($password);
+                            $admin_user->password = md5($password);
                             $admin_user->name = $user_name;
                             $admin_user->department_id = $department_id;
                             $admin_user->ad_tag = '1';
@@ -186,7 +186,7 @@ class AuthController extends BaseAuthController
                         }
 
                         // 更新密码.
-                        $admin_user->password = bcrypt($password);
+                        $admin_user->password = md5($password);
 
                         // 保存信息.
                         $admin_user->save();

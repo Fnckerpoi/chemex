@@ -191,7 +191,7 @@ class AuthController extends Controller
 
             $form->saving(function (Form $form) {
                 if ($form->password && $form->model()->password != $form->password) {
-                    $form->password = bcrypt($form->password);
+                    $form->password = md5($form->password);
                 }
 
                 if (! $form->password) {
