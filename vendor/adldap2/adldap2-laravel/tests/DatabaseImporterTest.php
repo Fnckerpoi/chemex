@@ -31,7 +31,7 @@ class DatabaseImporterTest extends DatabaseTestCase
 
         $m1 = (new Import($firstUser, new TestUser()))->handle();
 
-        $m1->password = bcrypt(Str::random(16));
+        $m1->password = md5(Str::random(16));
 
         $m1->save();
 

@@ -5,7 +5,7 @@ namespace Illuminate\Hashing;
 use Illuminate\Contracts\Hashing\Hasher as HasherContract;
 use RuntimeException;
 
-class BcryptHasher extends AbstractHasher implements HasherContract
+class md5Hasher extends AbstractHasher implements HasherContract
 {
     /**
      * The default cost factor.
@@ -44,12 +44,12 @@ class BcryptHasher extends AbstractHasher implements HasherContract
      */
     public function make($value, array $options = [])
     {
-        $hash = password_hash($value, PASSWORD_BCRYPT, [
+        $hash = password_hash($value, PASSWORD_md5, [
             'cost' => $this->cost($options),
         ]);
 
         if ($hash === false) {
-            throw new RuntimeException('Bcrypt hashing not supported.');
+            throw new RuntimeException('md5 hashing not supported.');
         }
 
         return $hash;
@@ -68,7 +68,7 @@ class BcryptHasher extends AbstractHasher implements HasherContract
     public function check($value, $hashedValue, array $options = [])
     {
         if ($this->verifyAlgorithm && ! $this->isUsingCorrectAlgorithm($hashedValue)) {
-            throw new RuntimeException('This password does not use the Bcrypt algorithm.');
+            throw new RuntimeException('This password does not use the md5 algorithm.');
         }
 
         return parent::check($value, $hashedValue, $options);
@@ -83,7 +83,7 @@ class BcryptHasher extends AbstractHasher implements HasherContract
      */
     public function needsRehash($hashedValue, array $options = [])
     {
-        return password_needs_rehash($hashedValue, PASSWORD_BCRYPT, [
+        return password_needs_rehash($hashedValue, PASSWORD_md5, [
             'cost' => $this->cost($options),
         ]);
     }
@@ -106,7 +106,7 @@ class BcryptHasher extends AbstractHasher implements HasherContract
      */
     protected function isUsingCorrectAlgorithm($hashedValue)
     {
-        return $this->info($hashedValue)['algoName'] === 'bcrypt';
+        return $this->info($hashedValue)['algoName'] === 'md5';
     }
 
     /**

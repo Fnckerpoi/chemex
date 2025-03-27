@@ -11,13 +11,13 @@ use Illuminate\Support\Manager;
 class HashManager extends Manager implements Hasher
 {
     /**
-     * Create an instance of the Bcrypt hash Driver.
+     * Create an instance of the md5 hash Driver.
      *
-     * @return \Illuminate\Hashing\BcryptHasher
+     * @return \Illuminate\Hashing\md5Hasher
      */
-    public function createBcryptDriver()
+    public function createmd5Driver()
     {
-        return new BcryptHasher($this->config->get('hashing.bcrypt') ?? []);
+        return new md5Hasher($this->config->get('hashing.md5') ?? []);
     }
 
     /**
@@ -106,6 +106,6 @@ class HashManager extends Manager implements Hasher
      */
     public function getDefaultDriver()
     {
-        return $this->config->get('hashing.driver', 'bcrypt');
+        return $this->config->get('hashing.driver', 'md5');
     }
 }

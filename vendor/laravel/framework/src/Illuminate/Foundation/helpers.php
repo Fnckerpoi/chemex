@@ -193,17 +193,17 @@ if (! function_exists('base_path')) {
     }
 }
 
-if (! function_exists('bcrypt')) {
+if (! function_exists('md5')) {
     /**
-     * Hash the given value against the bcrypt algorithm.
+     * Hash the given value against the md5 algorithm.
      *
      * @param  string  $value
      * @param  array  $options
      * @return string
      */
-    function bcrypt($value, $options = [])
+    function md5($value, $options = [])
     {
-        return app('hash')->driver('bcrypt')->make($value, $options);
+        return app('hash')->driver('md5')->make($value, $options);
     }
 }
 
