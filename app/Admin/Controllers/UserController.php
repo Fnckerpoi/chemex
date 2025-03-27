@@ -137,7 +137,7 @@ class UserController extends BaseUserController
             }
         })->saving(function (Form $form) {
             if ($form->password && $form->model()->get('password') != $form->password) {
-                $form->password = md5($form->password);
+                $form->password = bcrypt($form->password);
             }
 
             if (!$form->password) {

@@ -43,7 +43,7 @@ class AdminReset extends Command
             $user = new User();
             $user->username = 'admin';
         }
-        $user->password = md5('admin');
+        $user->password = bcrypt('admin');
         $user->name = 'Administrator';
         $user->save();
         $this->info('Admin账户已成功重置为 admin/admin');

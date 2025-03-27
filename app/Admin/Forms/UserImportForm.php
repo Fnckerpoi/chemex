@@ -56,9 +56,9 @@ class UserImportForm extends Form
                             $user->department_id = $department->id;
                             $user->gender = $row['性别'];
                             if (empty($row['密码'])) {
-                                $user->password = md5($row['用户名']);
+                                $user->password = bcrypt($row['用户名']);
                             } else {
-                                $user->password = md5($row['密码']);
+                                $user->password = bcrypt($row['密码']);
                             }
                             if (!empty($row['职位'])) {
                                 $user->title = $row['职位'];

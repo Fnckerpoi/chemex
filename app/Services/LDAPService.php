@@ -139,7 +139,7 @@ class LDAPService
                 if (empty($user)) {
                     $user = new User();
                     $user->username = $user_account;
-                    $user->password = md5($user->username);
+                    $user->password = bcrypt($user->username);
                     $user->name = $user_name;
                     $user->department_id = $department_id;
                     $user->ad_tag = 1;

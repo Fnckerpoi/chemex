@@ -25,7 +25,7 @@ class UserFactory extends Factory
             'username' => $this->faker->userName,
             'name' => $this->faker->name,
             'department_id' => 1,
-            'password' => md5('password'),
+            'password' => bcrypt('password'),
             'gender' => '男',
             'ad_tag' => 0,
         ];

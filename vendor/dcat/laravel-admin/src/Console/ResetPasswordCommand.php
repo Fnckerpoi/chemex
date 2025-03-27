@@ -49,7 +49,7 @@ class ResetPasswordCommand extends Command
             goto enterPassword;
         }
 
-        $user->password = md5($password);
+        $user->password = bcrypt($password);
 
         $user->save();
 

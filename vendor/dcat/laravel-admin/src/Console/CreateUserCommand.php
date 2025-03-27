@@ -30,7 +30,7 @@ class CreateUserCommand extends Command
 
         $username = $this->ask('Please enter a username to login');
 
-        $password = md5($this->secret('Please enter a password to login'));
+        $password = bcrypt($this->secret('Please enter a password to login'));
 
         $name = $this->ask('Please enter a name to display');
 

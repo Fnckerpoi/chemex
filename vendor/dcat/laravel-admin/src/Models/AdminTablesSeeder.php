@@ -19,7 +19,7 @@ class AdminTablesSeeder extends Seeder
         Administrator::truncate();
         Administrator::create([
             'username'   => 'admin',
-            'password'   => md5('admin'),
+            'password'   => bcrypt('admin'),
             'name'       => 'Administrator',
             'created_at' => $createdAt,
         ]);
